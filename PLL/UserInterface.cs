@@ -2,17 +2,17 @@
 
 public class UserInterface
 {
-    private readonly YoutubeClient _youtubeClient;
-    private readonly CommandInvoker _invoker;
-    private readonly string _videoUrl;
-    private readonly OutputPathInputHandler _outputPathHandler;
+    private readonly YoutubeClient youtubeClient;
+    private readonly CommandInvoker invoker;
+    private string VideoUrl;
+    private readonly OutputPathInputHandler outputPathHandler;
 
     public UserInterface(string videoUrl)
     {
-        _youtubeClient = new YoutubeClient();
-        _invoker = new CommandInvoker();
-        _videoUrl = videoUrl;
-        _outputPathHandler = new OutputPathInputHandler();
+        //  youtubeClient = new YoutubeClient();
+        invoker = new CommandInvoker();
+        VideoUrl = videoUrl;
+        outputPathHandler = new OutputPathInputHandler();
     }
 
     public void Run()
@@ -42,16 +42,16 @@ public class UserInterface
         switch (choice)
         {
             case "1":
-                var infoCommand = new GetVideoInfoCommand(_videoUrl, _youtubeClient);
-                _invoker.SetCommand(infoCommand);
-                _invoker.ExecuteCommand();
+                var infoCommand = new GetVideoInfoCommand(VideoUrl, youtubeClient);
+                invoker.SetCommand(infoCommand);
+                invoker.ExecuteCommand();
                 return true;
 
             case "2":
-                string outputPath = _outputPathHandler.GetInput();
-                var downloadCommand = new DownloadVideoCommand(_videoUrl, outputPath, _youtubeClient);
-                _invoker.SetCommand(downloadCommand);
-                _invoker.ExecuteCommand();
+                string outputPath = outputPathHandler.GetInput();
+                var downloadCommand = new DownloadVideoCommand(VideoUrl, outputPath, youtubeClient);
+                invoker.SetCommand(downloadCommand);
+                invoker.ExecuteCommand();
                 return true;
 
             case "3":

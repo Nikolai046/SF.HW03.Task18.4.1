@@ -1,17 +1,17 @@
 ﻿using YoutubeExplode;
-using YoutubeExplode.Converter;
 
 public class DownloadVideoCommand : ICommand
 {
-    private readonly string _videoUrl;
-    private readonly string _outputPath;
-    private readonly YoutubeClient _youtubeClient;
+    public string VideoUrl { get; }
+    private string OutputPath { get; }
+
+    private readonly YoutubeClient youtubeClient;
 
     public DownloadVideoCommand(string videoUrl, string outputPath, YoutubeClient youtubeClient)
     {
-        _videoUrl = videoUrl;
-        _outputPath = outputPath;
-        _youtubeClient = youtubeClient;
+        VideoUrl = videoUrl;
+        OutputPath = outputPath;
+        this.youtubeClient = youtubeClient;
     }
 
     public void Execute()
@@ -19,8 +19,8 @@ public class DownloadVideoCommand : ICommand
         try
         {
             Console.WriteLine("Начинается скачивание видео...");
-            _youtubeClient.Videos.DownloadAsync(_videoUrl, _outputPath);
-            Console.WriteLine($"Видео успешно скачано в: {_outputPath}");
+            // youtubeClient.Videos.DownloadAsync(VideoUrl, OutputPath);
+            Console.WriteLine($"Видео успешно скачано в: {OutputPath}");
         }
         catch (Exception ex)
         {

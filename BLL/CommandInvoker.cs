@@ -1,14 +1,14 @@
 ﻿public class CommandInvoker
 {
-    private ICommand _command;
+    private ICommand command;
 
     public void SetCommand(ICommand command)
     {
-        _command = command;
+        this.command = command;
     }
 
     public void ExecuteCommand()
     {
-        _command.Execute();
+        command.Execute();
     }
 }
