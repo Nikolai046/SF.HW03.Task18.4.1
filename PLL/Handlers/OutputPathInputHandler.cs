@@ -12,12 +12,15 @@
                 StringSplitOptions.RemoveEmptyEntries);
 
             // Используем Path.Combine для правильного объединения частей пути
-            string fullPath = pathParts.Aggregate(string.Empty, Path.Combine);
+            string directoryPath = pathParts.Aggregate(string.Empty, Path.Combine);
+
+            // Добавляем имя файла к пути
+            string fullPath = Path.Combine(directoryPath, "video.mp4");
 
             // Проверяем, существует ли директория
             if (Directory.Exists(fullPath))
                 return fullPath;
-            Console.WriteLine($"Директория {fullPath} не существует.");
+            Console.WriteLine($"Директория {directoryPath} не существует.");
         }
     }
 }
