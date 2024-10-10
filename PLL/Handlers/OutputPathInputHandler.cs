@@ -18,7 +18,7 @@
             string fullPath = Path.Combine(directoryPath, "video.mp4");
 
             // Проверяем, существует ли директория
-            if (Directory.Exists(fullPath))
+            if (Directory.Exists(directoryPath))
                 return fullPath;
             Console.WriteLine($"Директория {directoryPath} не существует.");
         }

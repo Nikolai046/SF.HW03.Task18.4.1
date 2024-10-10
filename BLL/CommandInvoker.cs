@@ -1,4 +1,5 @@
-﻿public class CommandInvoker
+﻿
+public class CommandInvoker
 {
     private ICommand command;
 
@@ -7,8 +8,8 @@
         this.command = command;
     }
 
-    public void ExecuteCommand()
+    public async Task ExecuteCommandAsync()
     {
-        command.Execute();
+       await command.ExecuteAsync();
     }
 }

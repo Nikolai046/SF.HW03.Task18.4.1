@@ -9,7 +9,7 @@ public class UserInterface
 
     public UserInterface(string videoUrl)
     {
-        //  youtubeClient = new YoutubeClient();
+        youtubeClient = new YoutubeClient();
         invoker = new CommandInvoker();
         VideoUrl = videoUrl;
         outputPathHandler = new OutputPathInputHandler();
@@ -44,14 +44,14 @@ public class UserInterface
             case "1":
                 var infoCommand = new GetVideoInfoCommand(VideoUrl, youtubeClient);
                 invoker.SetCommand(infoCommand);
-                invoker.ExecuteCommand();
+                invoker.ExecuteCommandAsync();
                 return true;
 
             case "2":
                 string outputPath = outputPathHandler.GetInput();
                 var downloadCommand = new DownloadVideoCommand(VideoUrl, outputPath, youtubeClient);
                 invoker.SetCommand(downloadCommand);
-                invoker.ExecuteCommand();
+                invoker.ExecuteCommandAsync();
                 return true;
 
             case "3":

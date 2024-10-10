@@ -11,16 +11,13 @@ public class GetVideoInfoCommand : ICommand
         this.youtubeClient = youtubeClient;
     }
 
-    public void Execute()
+    public async Task ExecuteAsync()
     {
         try
         {
-            //var video = youtubeClient.Videos.GetAsync(VideoUrl).Result;
-            //Console.WriteLine($"Название: {video.Title}");
-            //Console.WriteLine($"Описание: {video.Description}");
-
-            Console.WriteLine($"Название: ***");
-            Console.WriteLine($"Описание: ***");
+            var video = youtubeClient.Videos.GetAsync(VideoUrl).Result;
+            Console.WriteLine($"Название: {video.Title}");
+            Console.WriteLine($"Описание: {video.Description}");
         }
         catch (Exception ex)
         {

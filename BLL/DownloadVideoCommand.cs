@@ -1,4 +1,5 @@
 ﻿using YoutubeExplode;
+using YoutubeExplode.Converter;
 
 public class DownloadVideoCommand : ICommand
 {
@@ -14,12 +15,12 @@ public class DownloadVideoCommand : ICommand
         this.youtubeClient = youtubeClient;
     }
 
-    public void Execute()
+    public async Task ExecuteAsync()
     {
         try
         {
             Console.WriteLine("Начинается скачивание видео...");
-            // youtubeClient.Videos.DownloadAsync(VideoUrl, OutputPath);
+            await youtubeClient.Videos.DownloadAsync(VideoUrl, OutputPath);
             Console.WriteLine($"Видео успешно скачано в: {OutputPath}");
         }
         catch (Exception ex)
