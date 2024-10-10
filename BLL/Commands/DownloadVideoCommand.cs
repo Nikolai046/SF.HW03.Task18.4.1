@@ -1,6 +1,11 @@
 ﻿using YoutubeExplode;
 using YoutubeExplode.Converter;
 
+namespace SF.HW03.Task18._4._1.BLL.Commands;
+
+/// <summary>
+/// Класс DownloadVideoCommand реализует команду для скачивания видео с YouTube.
+/// </summary>
 public class DownloadVideoCommand : ICommand
 {
     public string VideoUrl { get; }
@@ -8,6 +13,9 @@ public class DownloadVideoCommand : ICommand
 
     private readonly YoutubeClient youtubeClient;
 
+    /// <summary>
+    /// Конструктор инициализирует команду с URL видео, путем сохранения и клиентом YouTube.
+    /// </summary>
     public DownloadVideoCommand(string videoUrl, string outputPath, YoutubeClient youtubeClient)
     {
         VideoUrl = videoUrl;
@@ -15,12 +23,16 @@ public class DownloadVideoCommand : ICommand
         this.youtubeClient = youtubeClient;
     }
 
-    public async Task ExecuteAsync()
+    /// <summary>
+    /// Метод Execute скачивает видео и сохраняет его по указанному пути.
+    /// </summary>
+    public async Task Execute()
     {
         try
         {
+            Console.Clear();
             Console.WriteLine("Начинается скачивание видео...");
-            await youtubeClient.Videos.DownloadAsync(VideoUrl, OutputPath);
+            youtubeClient.Videos.DownloadAsync(VideoUrl, OutputPath).GetAwaiter().GetResult();
             Console.WriteLine($"Видео успешно скачано в: {OutputPath}");
         }
         catch (Exception ex)
